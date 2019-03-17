@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+}
+
+html,body{
+    margin: 0;
+    background-color: rgb(250, 250, 250);
+    font-family: sans-serif;
+}
+
+.m-0 { margin: 0; }
+.p-
+.bg-dark { background-color: #393E41; }
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.header {
+    color: white;
+    padding-top: 3em;
+    padding-bottom: 8em;
+}
+
+.header h1 {
+    text-transform: uppercase;
+}
+
+.header ul {
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    
+    margin-top: 3em;
+}
+
+.header ul li {
+    vertical-align: bottom;
+    width: 20%;
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.header ul li img {
+    vertical-align: bottom;
+    color: white;
+}
+
+.header ul li:hover {
+    background-color: #42484c;
+}
+
+.container {
+    max-width: 1200px;
+    min-height: 20em;
+    margin: 0 auto;
+    margin-top: -10em;
+    
+    background-color: white;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    border-radius: .25rem;
+}
+
+@media screen and (max-width: 1200px){
+    .container {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.footer {
+    color: #393E41;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 3em;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+    transition: all ease-in-out 1s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.mt {
+    margin-top: 3em;
+}
+
+.calendar{
+    width: 100%;
+    border-radius: .25rem;
+}
+
+.calendar thead th {
+    background-color: #274690;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.calendar td {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    padding: 10px;
+    width: calc(100vw / 10);
+    height: calc(100vw / 10);
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.calendar td:hover {
+    background-color: rgba(39, 70, 144, 0.2);
+}
+
+.not-selectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
