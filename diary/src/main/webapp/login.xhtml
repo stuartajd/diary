@@ -19,17 +19,15 @@
                 <p>Enter your login credentials to continue to your account.</p>
                 
                 <h:form>
-                    <h:outputText value="Username" />
-                    <h:inputText id="username" value="#{login.userName}"></h:inputText>
-                    <h:message for="username"></h:message>
+                    <h:outputText value="Username:" /><br />
+                    <h:inputText value="#{userCtrl.loginUser.username}"></h:inputText>
                     <br></br><br></br>
 
-                    <h:outputText value="Password" />
-                    <h:inputSecret id="password" value="#{login.passWord}"></h:inputSecret>
-                    <h:message for="password"></h:message>
+                    <h:outputText value="Password" /><br />
+                    <h:inputSecret value="#{userCtrl.loginUser.password}"></h:inputSecret>
                     <br></br><br></br>
 
-                    <h:commandButton action="#{login.validateUser}"
+                    <h:commandButton action="#{userCtrl.doLoginUser()}"
                             value="Login"></h:commandButton>
                 </h:form>
             </div>

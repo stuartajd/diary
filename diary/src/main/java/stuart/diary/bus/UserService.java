@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stuart.diary.bus;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import stuart.diary.ents.User;
+import stuart.diary.pers.UserFacade;
 
 /**
  *
@@ -13,7 +11,18 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class UserService {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @EJB
+    private UserFacade uf;
+    
+    
+    public boolean validateUser(User loginUser){
+        
+        return true;
+    } 
+    
+    
+    public boolean registerUser(User registerUser){
+        uf.create(registerUser);
+        return true;
+    }
 }
