@@ -24,15 +24,15 @@ public class UserController {
      */
     public UserController() {
     }
-    
-    @EJB 
+
+    @EJB
     private UserService us;
-    
+
     /**
      * User Registration Variables
      */
     private User registerUser = new User();
-    
+
     public User getRegisterUser() {
         return registerUser;
     }
@@ -40,12 +40,12 @@ public class UserController {
     public void setRegisterUser(User registerUser) {
         this.registerUser = registerUser;
     }
-    
+
     /**
      * UserService Access Variables
      */
     private User loginUser = new User();
-   
+
     public User getLoginUser() {
         return loginUser;
     }
@@ -53,28 +53,27 @@ public class UserController {
     public void setLoginUser(User loginUser) {
         this.loginUser = loginUser;
     }
-    
-    
+
     /**
      * Validate the user who logs into the user to the application
-     * @return 
-     */        
-    public String doLoginUser(){                 
-        if(us.validateUser(loginUser)){
-            return "index";
+     *
+     * @return
+     */
+    public String doLoginUser() {
+        if(us.validateUser(loginUser)) {
+            return "index?faces-redirect=true";
         }
-        
+
         return "";
-    } 
-    
-    
+    }
+
     /**
-     * Validate the users and login to the platform 
-     */ 
-    public String doRegisterUser(){
+     * Validate the users and login to the platform
+     */
+    public String doRegisterUser() {        
         if(us.registerUser(registerUser)){
-            return "index";
-        } 
+            return "index?faces-redirect=true";
+        }
         
         return "";
     }

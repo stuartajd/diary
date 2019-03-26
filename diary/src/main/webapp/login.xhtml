@@ -14,21 +14,32 @@
         </div>
         
         <div class="container">
-            <div class="card mt p">
+            <div class="card mt p-5 border-0">
                 <h1>Login</h1>
                 <p>Enter your login credentials to continue to your account.</p>
-                
-                <h:form>
-                    <h:outputText value="Username:" /><br />
-                    <h:inputText value="#{userCtrl.loginUser.username}"></h:inputText>
-                    <br></br><br></br>
 
-                    <h:outputText value="Password" /><br />
-                    <h:inputSecret value="#{userCtrl.loginUser.password}"></h:inputSecret>
-                    <br></br><br></br>
+                <h:messages class="error"></h:messages>
 
-                    <h:commandButton action="#{userCtrl.doLoginUser()}"
-                            value="Login"></h:commandButton>
+                <h:form class="row justify-content-center">
+
+                    <div class="col-md-4 mb-3">
+                        <div class="mb-3">
+                            <h:outputText value="Username:" /><br />
+                            <h:inputText id="username" class="form-control" value="#{userController.loginUser.username}"></h:inputText>
+                            <h:message for="username"></h:message>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputText value="Password:" /><br />
+                            <h:inputSecret id="password" class="form-control" value="#{userController.loginUser.password}"></h:inputSecret>
+                            <h:message for="password"></h:message>
+                        </div>
+
+                        <div>
+                            <h:commandButton action="#{userController.doLoginUser}"
+                                         value="Login" class="btn btn-outline-success btn-block"></h:commandButton>
+                        </div>
+                    </div>
                 </h:form>
             </div>
         </div>

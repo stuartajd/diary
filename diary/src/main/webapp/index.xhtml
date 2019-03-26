@@ -12,21 +12,22 @@
         <div class="bg-dark text-center header">
             <h1 class="m-0">Diary</h1> 
             
-            <ul>
-                <li>
-                    <h:link value="Calendar" outcome="calendar" />
-                </li>
-                <li>
-                    <h:link value="Invites" outcome="invites" />
-                </li>
-                <li>
-                    <h:link value="Search" outcome="search" />
-                </li>
-                <li>
-                    <h:link value="Reports" outcome="reports" />
-                </li>
-            </ul>
-
+            <div class="container nav-container">
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <h:link class="btn btn-link btn-block" value="Create Appointment" outcome="appointment" />
+                    </div>
+                    <div class="col-md-3">
+                        <h:link class="btn btn-link btn-block" value="Invites" outcome="invites" />
+                    </div>
+                    <div class="col-md-3">
+                        <h:link class="btn btn-link btn-block" value="Search" />
+                    </div>
+                    <div class="col-md-3">
+                        <h:link class="btn btn-link btn-block" value="Reports" />
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="container">

@@ -27,16 +27,30 @@ public class Appointment implements Serializable {
     
     private String title;
     private String description;
-    private Timestamp startDate;
+    private String startDate;
+    private String endDate;
+    private User owner;
+    //private List<UserService> attendees;
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+    
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
-
-    private Timestamp endDate;
-    
-    private User owner;
-    //private List<UserService> attendees;
 
     public String getTitle() {
         return title;
