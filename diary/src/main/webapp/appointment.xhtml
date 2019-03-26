@@ -17,7 +17,7 @@
             <div class="container nav-container">
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Create Appointment" outcome="appointment" />
+                        <h:link class="btn btn-link btn-block" value="Calendar" outcome="index" />
                     </div>
                     <div class="col-md-3">
                         <h:link class="btn btn-link btn-block" value="Invites" outcome="invites" />
@@ -42,30 +42,30 @@
                 <h:form class="row">
                     <div class="col-md-12 mb-3">
                         <h:outputText value="Appointment Title:" /><br />
-                        <h:inputText id="title" class="form-control" value="#{apptCtrl.createAppointment.title}"></h:inputText>
+                        <h:inputText id="title" class="form-control" value="#{appointmentController.newAppointment.title}"></h:inputText>
                         <h:message for="title" class="error"></h:message>
                     </div>
                     
                     <div class="col-md-12 mb-3">
                         <h:outputText value="Appointment Description:" /><br />
-                        <h:inputTextarea id="description" class="form-control" value="#{apptCtrl.createAppointment.description}"></h:inputTextarea>
+                        <h:inputTextarea id="description" class="form-control" value="#{appointmentController.newAppointment.description}"></h:inputTextarea>
                         <h:message for="description" class="error"></h:message>
                     </div>
                     
                     <div class="col-md-6 mb-3">
                         <h:outputText value="Appointment Start Date:" /><br />
-                        <h:inputText a:type="date" id="startDate" class="form-control" value="#{apptCtrl.createAppointment.startDate}"></h:inputText>
+                        <h:inputText a:type="date" id="startDate" class="form-control" value="#{appointmentController.newAppointment.startDate}"></h:inputText>
                         <h:message for="startDate" class="error"></h:message>
                     </div>
                     
                     <div class="col-md-6 mb-3">
                         <h:outputText value="Appointment End Date:" /><br />
-                        <h:inputText a:type="date" id="endDate" class="form-control" value="#{apptCtrl.createAppointment.endDate}"></h:inputText>
+                        <h:inputText a:type="date" id="endDate" class="form-control" value="#{appointmentController.newAppointment.endDate}"></h:inputText>
                         <h:message for="endDate" class="error"></h:message>
                     </div>
                     
                     <div class="col-md-6 mb-3">
-                        <h:commandButton action="#{apptCtrl.doCreateAppointment}"
+                        <h:commandButton action="#{appointmentController.doCreateAppointment}"
                                          value="Create Appointment" class="btn btn-outline-success btn-block"></h:commandButton>
                     </div>
                 </h:form>

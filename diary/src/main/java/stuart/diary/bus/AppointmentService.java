@@ -7,6 +7,8 @@ package stuart.diary.bus;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import stuart.diary.ents.Appointment;
 import stuart.diary.pers.AppointmentFacade;
 
@@ -32,13 +34,17 @@ public class AppointmentService {
         if(appointment.getTitle().length() == 0 || appointment.getDescription().length() == 0
                 || appointment.getStartDate().length() == 0 || appointment.getEndDate().length() == 0){
             
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Please complete all the required fields."));
             return false;
         }
         
             
         // Validate appointment
         
-//        af.create(appointment);
+        if(valid){
+            af.create(appointment);         
+        }
+        
         return valid;
     }
 }

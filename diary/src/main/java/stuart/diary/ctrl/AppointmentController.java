@@ -15,7 +15,7 @@ import stuart.diary.ents.Appointment;
  *
  * @author stuart
  */
-@Named(value = "apptCtrl")
+@Named(value = "appointmentController")
 @RequestScoped
 public class AppointmentController {
 
@@ -31,22 +31,22 @@ public class AppointmentController {
     /**
      * Create appointment variables
      */
-    private Appointment createAppointment;
+    private Appointment newAppointment = new Appointment();
 
-    public Appointment getCreateAppointment() {
-        return createAppointment;
+    public Appointment getNewAppointment() {
+        return newAppointment;
     }
 
-    public void setCreateAppointment(Appointment createAppointment) {
-        this.createAppointment = createAppointment;
+    public void setNewAppointment(Appointment newAppointment) {
+        this.newAppointment = newAppointment;
     }
     
     /**
      * Validate the users and login to the platform
      */
-    public String doCreateAppointment(Appointment appointment) {        
-        if(as.createAppointment(appointment)){
-            return "appointment?faces-redirect=true";
+    public String doCreateAppointment() {        
+        if(as.createAppointment(newAppointment)){
+            return "index?faces-redirect=true";
         }
         
         return "";
