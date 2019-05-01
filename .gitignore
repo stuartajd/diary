@@ -1,2 +1,4 @@
 /diary/target/
-\.DS_Store
+.DS_Store
+.idea
+/MPJ Projects/nbproject/private/
