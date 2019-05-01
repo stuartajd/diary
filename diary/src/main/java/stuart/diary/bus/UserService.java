@@ -1,5 +1,6 @@
 package stuart.diary.bus;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
@@ -33,7 +34,12 @@ public class UserService {
             }
         }
 
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", loginUser);
         return valid;
+    }
+
+    public List<User> searchUser(){
+        return uf.findAll();
     }
 
     public boolean registerUser(User registerUser) {

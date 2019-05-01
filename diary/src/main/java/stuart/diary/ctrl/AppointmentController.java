@@ -42,14 +42,38 @@ public class AppointmentController {
     }
     
     /**
+     * Display appointment variables
+     */
+    private Appointment viewAppointment = new Appointment();
+
+    public Appointment getViewAppointment() {
+        return viewAppointment;
+    }
+
+    public void setViewAppointment(Appointment viewAppointment) {
+        this.viewAppointment = viewAppointment;
+    }
+    
+    
+    /**
      * Validate the users and login to the platform
      */
     public String doCreateAppointment() {        
-        if(as.createAppointment(newAppointment)){
-            return "index?faces-redirect=true";
+        viewAppointment = as.createAppointment(newAppointment);
+                
+        if(viewAppointment != null){
+            return "view_appointment?faces-redirect=true";
         }
         
         return "";
     }
+    
+    /**
+     * Open up an appointment on a certain date, pull back the details
+     * @return 
+     */
+    public String openAppointmentDate(){
+        return "view_appointment?faces-redirect=true";
+    } 
     
 }

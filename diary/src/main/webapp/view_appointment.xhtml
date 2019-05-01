@@ -1,24 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Diary - Invites</title>
+        <title>Diary</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles/style.css" />
     </h:head>
     <h:body>
         <div class="bg-dark text-center header">
-            <h1 class="m-0">Diary</h1> 
+            <h1 class="m-0">Diary</h1>
             
-           <div class="container nav-container">
+            <div class="container nav-container">
                 <div class="row mt-3">
                     <div class="col-md-3">
                         <h:link class="btn btn-link btn-block" value="Calendar" outcome="index" />
                     </div>
                     <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Create Appointment" outcome="appointment" />
+                        <h:link class="btn btn-link btn-block" value="Invites" outcome="invites" />
                     </div>
                     <div class="col-md-3">
                         <h:link class="btn btn-link btn-block" value="Search" outcome="search"  />
@@ -28,15 +30,16 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        
+
         <div class="container">
             <div class="card mt p-5 border-0">
-                <h1>Invites</h1>
+                <h1>View Appointment</h1>
+
+                <p>#{appointmentController.viewAppointment.title}</p>
             </div>
         </div>
-        
+
         <div class="footer">
             <a href="http://github.com/stuartajd/diary" target="_blank">Online Diary System</a>
         </div>

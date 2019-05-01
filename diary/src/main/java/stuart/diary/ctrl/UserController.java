@@ -5,7 +5,9 @@
  */
 package stuart.diary.ctrl;
 
+import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import stuart.diary.bus.UserService;
@@ -23,6 +25,9 @@ public class UserController {
      * Creates a new instance of UserController
      */
     public UserController() {
+        if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") == null){
+            this.doLogoutUser();
+        }
     }
 
     @EJB
@@ -53,6 +58,30 @@ public class UserController {
     public void setLoginUser(User loginUser) {
         this.loginUser = loginUser;
     }
+    
+    /**
+     * Search Users Variables
+     */
+    private User searchUser = new User();
+
+    public User getSearchUser() {
+        return searchUser;
+    }
+
+    public void setSearchUser(User searchUser) {
+        this.searchUser = searchUser;
+    }
+    
+    private List<User> searchResults = null;
+
+    public List<User> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<User> searchResults) {
+        this.searchResults = searchResults;
+    }
+    
 
     /**
      * Validate the user who logs into the user to the application
@@ -70,12 +99,28 @@ public class UserController {
     /**
      * Validate the users and login to the platform
      */
-    public String doRegisterUser() {        
+    public String doRegisterUser() {
         if(us.registerUser(registerUser)){
-            return "index?faces-redirect=true";
+            return "login?faces-redirect=true";
         }
         
         return "";
+    }
+
+    /**
+     * Clear user request session
+     */
+    public String doLogoutUser(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "login?faces-redirect=true";
+    }
+
+    /**
+     * Validate the users and login to the platform
+     */
+    public String doSearchUsers() {    
+        searchResults = us.searchUser();
+        return "search";
     }
 
 }

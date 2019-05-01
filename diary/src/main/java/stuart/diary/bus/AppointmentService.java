@@ -27,24 +27,21 @@ public class AppointmentService {
      * @param appointment
      * @return 
      */
-    public boolean createAppointment(Appointment appointment){
+    public Appointment createAppointment(Appointment appointment){
         boolean valid = true;
         
         // Check if all fields have values
         if(appointment.getTitle().length() == 0 || appointment.getDescription().length() == 0
-                || appointment.getStartDate().length() == 0 || appointment.getEndDate().length() == 0){
-            
+                || appointment.getStartDate() == null || appointment.getEndDate() == null){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Please complete all the required fields."));
-            return false;
+            return null;
         }
         
-            
-        // Validate appointment
         
-        if(valid){
-            af.create(appointment);         
+        if(valid){    
+            af.create(appointment);  
         }
         
-        return valid;
+        return appointment;
     }
 }

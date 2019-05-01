@@ -23,7 +23,7 @@
                         <h:link class="btn btn-link btn-block" value="Invites" outcome="invites" />
                     </div>
                     <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Search" />
+                        <h:link class="btn btn-link btn-block" value="Search"  outcome="search" />
                     </div>
                     <div class="col-md-3">
                         <h:link class="btn btn-link btn-block" value="Reports" />
@@ -53,13 +53,15 @@
                     </div>
                     
                     <div class="col-md-6 mb-3">
-                        <h:outputText value="Appointment Start Date:" /><br />
-                        <h:inputText a:type="date" id="startDate" class="form-control" value="#{appointmentController.newAppointment.startDate}"></h:inputText>
+                        <h:outputText value="Appointment Start Date (DD/MM/YY):" /><br />
+                        <h:inputText a:type="date" id="startDate" class="form-control" value="#{appointmentController.newAppointment.startDate}">
+                           <f:convertDateTime pattern="dd/MM/YY"/>  
+                        </h:inputText>
                         <h:message for="startDate" class="error"></h:message>
                     </div>
                     
                     <div class="col-md-6 mb-3">
-                        <h:outputText value="Appointment End Date:" /><br />
+                        <h:outputText value="Appointment End Date (DD/MM/YY):" /><br />
                         <h:inputText a:type="date" id="endDate" class="form-control" value="#{appointmentController.newAppointment.endDate}"></h:inputText>
                         <h:message for="endDate" class="error"></h:message>
                     </div>

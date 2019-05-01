@@ -6,12 +6,16 @@
 package stuart.diary.ents;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import stuart.diary.bus.UserService;
 
 /**
  *
@@ -27,29 +31,26 @@ public class Appointment implements Serializable {
     
     private String title;
     private String description;
-    private String startDate;
-    private String endDate;
     private User owner;
-    //private List<UserService> attendees;
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
     
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    @Temporal(TemporalType.DATE)
+    private java.util.Date startDate;
+    @Temporal(TemporalType.TIME)
+    private java.util.Date startTime;
+    @Temporal(TemporalType.DATE)
+    private java.util.Date endDate;
+    @Temporal(TemporalType.TIME)
+    private java.util.Date endTime;
+
+    @ManyToMany
+    private List<User> attendees;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -68,6 +69,38 @@ public class Appointment implements Serializable {
         this.description = description;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
     public User getOwner() {
         return owner;
     }
@@ -75,13 +108,13 @@ public class Appointment implements Serializable {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-    
-    public Long getId() {
-        return id;
+
+    public List<User> getAttendees() {
+        return attendees;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAttendees(List<User> attendees) {
+        this.attendees = attendees;
     }
 
     @Override
