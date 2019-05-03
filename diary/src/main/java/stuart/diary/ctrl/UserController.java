@@ -62,7 +62,8 @@ public class UserController {
     private User updateUser = new User();
 
     public User getUpdateUser() {
-        return updateUser;
+        User userSession = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        return userSession;
     }
 
     public void setUpdateUser(User updateUser) {
@@ -123,18 +124,12 @@ public class UserController {
      */
     public String doUpdateUser() {
         if(us.updateUser(updateUser)){
-            return "user";
+            return "user?faces-redirect=true";
         }
         
         return "";
     }
     
-    public String loadUpdateUser(){
-        User updateU = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        this.setUpdateUser(updateU);
-        return "user";
-    }
-
     /**
      * Clear user request session
      */
@@ -147,7 +142,7 @@ public class UserController {
      * Validate the users and login to the platform
      */
     public String doSearchUsers() {    
-        searchResults = us.searchUser();
+        searchResults = us.searchUsers();
         return "search";
     }
 

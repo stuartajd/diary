@@ -18,10 +18,6 @@ public class UserService {
     @EJB
     private UserFacade uf;
 
-    public void invalidateUserSession(){
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("user");
-    }
-    
     public boolean validateUser(User loginUser) {
         boolean valid = true;
         
@@ -42,11 +38,15 @@ public class UserService {
             }
         }
 
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", loginUser);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", resp);
         return valid;
     }
 
-    public List<User> searchUser(){
+    public User lookupUserByUsername(String username){
+       return uf.lookupUserByUsername(username);
+    }
+    
+    public List<User> searchUsers(){
         return uf.findAll();
     }
 
@@ -61,7 +61,6 @@ public class UserService {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Please complete all the fields to register your account."));
             return false;
         }
-       
         
         // Email validation
         if (!registerUser.getEmailAddress().matches("^[a-zA-Z0-9_.]+@[a-zA-Z.]+?\\.[a-zA-Z]{2,3}$")) {
