@@ -7,8 +7,23 @@ html, body{
     background-color: #343a40!important;
 }
 
+.messages{
+    padding-left: 0;
+}
+
 .error {
     background-color: red;
+    display: block;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: white;
+    padding:10px;
+    list-style-type:none;
+}
+
+.info {
+    background-color: green;
     display: block;
     font-size: 12px;
     margin-top: 5px;
@@ -48,6 +63,10 @@ html, body{
     border-radius: .25rem!important;
 }
 
+.btn-active {
+    background-color: #42484c!important;
+}
+
 @media screen and (max-width: 1200px){
     .container {
         margin-left: 20px;
@@ -72,35 +91,6 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-.mt {
-    margin-top: 3em;
-}
-
-.calendar{
-    width: 100%;
-    border-radius: .25rem;
-}
-
-.calendar thead th {
-    background-color: #274690;
-    color: white;
-    padding: 10px;
-    text-align: left;
-}
-
-.calendar td {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
-    padding: 10px;
-    width: calc(100vw / 10);
-    height: calc(100vw / 10);
-    vertical-align: top;
-    cursor: pointer;
-}
-
-.calendar td:hover {
-    background-color: rgba(39, 70, 144, 0.2);
 }
 
 .not-selectable {

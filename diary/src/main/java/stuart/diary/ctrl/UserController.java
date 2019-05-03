@@ -59,11 +59,10 @@ public class UserController {
     /**
      * Update User Variables
      */
-    private User updateUser = new User();
-
+    private User updateUser = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+    
     public User getUpdateUser() {
-        User userSession = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        return userSession;
+        return updateUser;
     }
 
     public void setUpdateUser(User updateUser) {
@@ -124,7 +123,7 @@ public class UserController {
      */
     public String doUpdateUser() {
         if(us.updateUser(updateUser)){
-            return "user?faces-redirect=true";
+            return "user";
         }
         
         return "";
