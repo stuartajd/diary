@@ -8,8 +8,10 @@ package stuart.diary.ctrl;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import stuart.diary.bus.AppointmentService;
 import stuart.diary.ents.Appointment;
+import stuart.diary.ents.User;
 
 /**
  *
@@ -58,7 +60,9 @@ public class AppointmentController {
     /**
      * Validate the users and login to the platform
      */
-    public String doCreateAppointment() {        
+    public String doCreateAppointment() { 
+        newAppointment.setOwner((User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user"));
+
         viewAppointment = as.createAppointment(newAppointment);
                 
         if(viewAppointment != null){

@@ -31,8 +31,10 @@ public class AppointmentService {
         boolean valid = true;
         
         // Check if all fields have values
-        if(appointment.getTitle().length() == 0 || appointment.getDescription().length() == 0
-                || appointment.getStartDate() == null || appointment.getEndDate() == null){
+        if( appointment.getTitle().length() == 0 || 
+            appointment.getDescription().length() == 0 ||
+            appointment.getStartTime() == null ||
+            appointment.getEndTime()== null ){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Please complete all the required fields."));
             return null;
         }

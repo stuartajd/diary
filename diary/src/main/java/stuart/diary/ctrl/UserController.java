@@ -25,9 +25,6 @@ public class UserController {
      * Creates a new instance of UserController
      */
     public UserController() {
-        if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") == null){
-            this.doLogoutUser();
-        }
     }
 
     @EJB
@@ -58,6 +55,20 @@ public class UserController {
     public void setLoginUser(User loginUser) {
         this.loginUser = loginUser;
     }
+    
+    /**
+     * Update User Variables
+     */
+    private User updateUser = new User();
+
+    public User getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(User updateUser) {
+        this.updateUser = updateUser;
+    }
+    
     
     /**
      * Search Users Variables
@@ -105,6 +116,23 @@ public class UserController {
         }
         
         return "";
+    }
+    
+    /**
+     * Validate the users and login to the platform
+     */
+    public String doUpdateUser() {
+        if(us.updateUser(updateUser)){
+            return "user";
+        }
+        
+        return "";
+    }
+    
+    public String loadUpdateUser(){
+        User updateU = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        this.setUpdateUser(updateU);
+        return "user";
     }
 
     /**

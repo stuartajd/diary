@@ -6,6 +6,7 @@
 package stuart.diary.ents;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -15,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import stuart.diary.bus.UserService;
 
 /**
  *
@@ -33,18 +33,30 @@ public class Appointment implements Serializable {
     private String description;
     private User owner;
     
-    @Temporal(TemporalType.DATE)
-    private java.util.Date startDate;
-    @Temporal(TemporalType.TIME)
-    private java.util.Date startTime;
-    @Temporal(TemporalType.DATE)
-    private java.util.Date endDate;
-    @Temporal(TemporalType.TIME)
-    private java.util.Date endTime;
-
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar startTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar endTime;
+    
     @ManyToMany
     private List<User> attendees;
 
+    public Calendar getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Calendar startTime) {
+        this.startTime = startTime;
+    }
+
+    public Calendar getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Calendar endTime) {
+        this.endTime = endTime;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -67,38 +79,6 @@ public class Appointment implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public User getOwner() {

@@ -36,7 +36,7 @@ public class UserFacade extends AbstractFacade<User> {
             return null;
         }
     }
-    
+        
     /**
      * Look up a user based off their login email
      * @param username

@@ -3,43 +3,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Diary</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles/style.css" />
+        <h:outputStylesheet library="css" name="style.css"  /> 
     </h:head>
     <h:body>
         <div class="bg-dark text-center header">
-            <h1 class="m-0">Diary</h1>
+            <h1 class="m-0">Diary</h1> 
             
             <div class="container nav-container">
-                <div class="row mt-3">
-                    <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Calendar" outcome="index" />
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-md-2">
+                        <h:link class="btn btn-link btn-block" value="Appointments" outcome="appointment" />
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <h:link class="btn btn-link btn-block" value="Invites" outcome="invites" />
                     </div>
-                    <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Search"  outcome="search" />
+                    <div class="col-md-2">
+                        <h:link class="btn btn-link btn-block" value="Search" outcome="search" />
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <h:link class="btn btn-link btn-block" value="Reports" />
+                    </div>
+                    <div  class="col-md-2">
+                        <h:form><h:commandLink class="btn btn-link btn-block" value="Logout" action="#{userController.doLogoutUser()}" /></h:form>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="container">
-            <div class="card mt p-5 border-0">
+            <div class="card mt p-3">
                 <h1>Create Appointment</h1>
                 <p>Create an appointment, select the date and time.</p>
 
                 <h:messages class="error"></h:messages>
 
-                <h:form class="row">
+                <h:form id="appointmentForm" class="row">
                     <div class="col-md-12 mb-3">
                         <h:outputText value="Appointment Title:" /><br />
                         <h:inputText id="title" class="form-control" value="#{appointmentController.newAppointment.title}"></h:inputText>
@@ -53,27 +56,29 @@
                     </div>
                     
                     <div class="col-md-6 mb-3">
-                        <h:outputText value="Appointment Start Date (DD/MM/YY):" /><br />
-                        <h:inputText a:type="date" id="startDate" class="form-control" value="#{appointmentController.newAppointment.startDate}">
-                           <f:convertDateTime pattern="dd/MM/YY"/>  
+                        <h:outputText value="Appointment Start (DD/MM/YYYY HH:MM):" /><br />
+                        <h:inputText p:type="datetime-local" id="startTime" class="form-control" value="#{appointmentController.newAppointment.startTime}">
+                           <f:convertDateTime type="both" pattern="yyyy/mm/dd hh:mm" dateStyle="long" timeZone="GMT+1"/>
                         </h:inputText>
                         <h:message for="startDate" class="error"></h:message>
                     </div>
                     
                     <div class="col-md-6 mb-3">
-                        <h:outputText value="Appointment End Date (DD/MM/YY):" /><br />
-                        <h:inputText a:type="date" id="endDate" class="form-control" value="#{appointmentController.newAppointment.endDate}"></h:inputText>
+                        <h:outputText value="Appointment End (DD/MM/YYYY HH:MM):" /><br />
+                        <h:inputText p:type="datetime-local" id="endTime" class="form-control" value="#{appointmentController.newAppointment.startTime}">
+                           <f:convertDateTime type="both" pattern="yyyy/mm/dd hh:mm" dateStyle="long" timeZone="GMT+1"/>  
+                        </h:inputText>
                         <h:message for="endDate" class="error"></h:message>
                     </div>
                     
                     <div class="col-md-6 mb-3">
                         <h:commandButton action="#{appointmentController.doCreateAppointment}"
-                                         value="Create Appointment" class="btn btn-outline-success btn-block"></h:commandButton>
+                                        value="Create Appointment" class="btn btn-outline-success btn-block"></h:commandButton>
                     </div>
                 </h:form>
             </div>
         </div>
-
+        
         <div class="footer">
             <a href="http://github.com/stuartajd/diary" target="_blank">Online Diary System</a>
         </div>

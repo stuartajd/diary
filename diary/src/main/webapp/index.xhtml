@@ -6,88 +6,35 @@
         <title>Diary</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles/style.css" />
+        <h:outputStylesheet library="css" name="style.css"  /> 
     </h:head>
     <h:body>
         <div class="bg-dark text-center header">
-            <h1 class="m-0">Diary</h1> 
+            <h1 class="m-0"><h:link value="Diary" outcome="index" /></h1> 
             
             <div class="container nav-container">
-                <div class="row mt-3">
-                    <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Create Appointment" outcome="appointment" />
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-md-2">
+                        <h:link class="btn btn-link btn-block" value="Appointments" outcome="appointment" />
                     </div>
-                    <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Invites" outcome="invites" />
+                    <div class="col-md-2">
+                        <h:form><h:commandLink class="btn btn-link btn-block" value="Update User" action="#{userController.loadUpdateUser()}" /></h:form>
                     </div>
-                    <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Search" outcome="search" />
+                    <div class="col-md-2">
+                        <h:link class="btn btn-link btn-block" value="Reports" outcome="reports" />
                     </div>
-                    <div class="col-md-3">
-                        <h:link class="btn btn-link btn-block" value="Reports" />
+                    <div  class="col-md-2">
+                        <h:form><h:commandLink class="btn btn-link btn-block" value="Logout" action="#{userController.doLogoutUser()}" /></h:form>
                     </div>
-                </div>
-
-                <div>
-                    <h:commandButton value="Logout" action="#{userController.doLogoutUser()}" />	
                 </div>
             </div>
         </div>
         
         <div class="container">
             <div class="card mt">
-                       
-                <table width="100%" border="0" class="calendar not-selectable">
-                    <thead>
-                        <tr>
-                            <th colspan="7">Upcoming Events</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td action="#{appointmentController.openAppointmentDate()}">1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
-                            <td>13</td>
-                            <td>14</td>
-                        </tr>
-                        <tr>
-                            <td>15</td>
-                            <td>16</td>
-                            <td>17</td>
-                            <td>18</td>
-                            <td>19</td>
-                            <td>20</td>
-                            <td>21</td>
-                        </tr>
-                        <tr>
-                            <td>22</td>
-                            <td>23</td>
-                            <td>24</td>
-                            <td>25</td>
-                            <td>26</td>
-                            <td>27</td>
-                            <td>28</td>
-                        </tr>
-                        <tr>
-                            <td>29</td>
-                            <td>30</td>
-                            <td>31</td>
-                            <td colspan="4"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                
+                // List of the upcoming events for the current user
+                
             </div>
         </div>
         
