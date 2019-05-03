@@ -95,9 +95,9 @@ public class UserController {
     
 
     /**
-     * Validate the user who logs into the user to the application
-     *
-     * @return
+     * Validate the users credentials
+     * 
+     * @return String for redirection of JSF
      */
     public String doLoginUser() {
         if(us.validateUser(loginUser)) {
@@ -108,7 +108,9 @@ public class UserController {
     }
 
     /**
-     * Validate the users and login to the platform
+     * Validate the users registration credentials
+     * 
+     * @return String for redirection of JSF
      */
     public String doRegisterUser() {
         if(us.registerUser(registerUser)){
@@ -119,7 +121,9 @@ public class UserController {
     }
     
     /**
-     * Validate the users and login to the platform
+     * Validate the users credentials and update their account
+     * 
+     * @return String for redirection of JSF
      */
     public String doUpdateUser() {
         if(us.updateUser(updateUser)){
@@ -130,7 +134,9 @@ public class UserController {
     }
     
     /**
-     * Clear user request session
+     * Clears the users sessions
+     * 
+     * @return String for redirection of JSF
      */
     public String doLogoutUser(){
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -138,11 +144,27 @@ public class UserController {
     }
 
     /**
-     * Validate the users and login to the platform
+     * Validate the users credentials and update their account
+     * 
+     * @return String for redirection of JSF
      */
     public String doSearchUsers() {    
         searchResults = us.searchUsers();
         return "search";
+    }
+    
+    /**
+     * Selects all users from the database.
+     * 
+     * @param excludeCurrent Excludes the current signed in user from the results
+     * @return List of User of all members of the database.
+     */
+    public List<User> getAllUsers(boolean excludeCurrent) {    
+        searchResults = us.searchUsers();
+        if(excludeCurrent){
+            searchResults.remove((User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user"));
+        }
+        return searchResults;
     }
 
 }

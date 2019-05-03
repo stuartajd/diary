@@ -6,7 +6,7 @@
 package stuart.diary.ents;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -14,8 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -33,30 +31,14 @@ public class Appointment implements Serializable {
     private String description;
     private User owner;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar startTime;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar endTime;
+    private Date startDate;
+    private Time startTime;
+    private Date endDate;
+    private Time endTime;
     
     @ManyToMany
     private List<User> attendees;
 
-    public Calendar getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Calendar startTime) {
-        this.startTime = startTime;
-    }
-
-    public Calendar getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Calendar endTime) {
-        this.endTime = endTime;
-    }
-    
     public Long getId() {
         return id;
     }
@@ -65,6 +47,40 @@ public class Appointment implements Serializable {
         this.id = id;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
+    }
+
+    
+    
     public String getTitle() {
         return title;
     }

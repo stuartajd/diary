@@ -35,7 +35,9 @@ public class AppointmentService {
             appointment.getDescription().length() == 0 ||
             appointment.getStartTime() == null ||
             appointment.getEndTime()== null ){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Please complete all the required fields."));
+            
+            String response = "Please complete all the required fields.";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, response, response));
             return null;
         }
         
