@@ -68,18 +68,16 @@ public class AuthFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
-        String loginURI = req.getContextPath() + "/faces/login.xhtml";
-        String registerURI = req.getContextPath() + "/faces/register.xhtml";
 
-        boolean loggedIn = session != null && session.getAttribute("user") != null;
-        boolean loginRequest = req.getRequestURI().equals(loginURI);
-        boolean registerRequest = req.getRequestURI().equals(registerURI);
-        boolean resourceRequest = req.getRequestURI().startsWith(req.getContextPath() + "/faces" + ResourceHandler.RESOURCE_IDENTIFIER);
+        boolean authenticated = session != null && session.getAttribute("user") != null;
+        boolean loginURL = req.getRequestURI().equals(req.getContextPath() + "/faces/login.xhtml");
+        boolean registerURL = req.getRequestURI().equals(req.getContextPath() + "/faces/register.xhtml");
+        boolean resource = req.getRequestURI().startsWith(req.getContextPath() + "/faces" + ResourceHandler.RESOURCE_IDENTIFIER);
 
-        if (loggedIn || loginRequest || registerRequest || resourceRequest) {
-            chain.doFilter(req, res);
+        if (!authenticated && !loginURL && !registerURL && !resource) {
+            res.sendRedirect(req.getContextPath() + "/faces/login.xhtml");
         } else {
-            res.sendRedirect(loginURI);
+            chain.doFilter(req, res);
         }
     }
 

@@ -36,7 +36,7 @@
             <div class="card mt-5 p-3">
                 
                 <h3>Create Appointment</h3>
-                <p>Create an appointment, select the date and time and press create.</p>
+                <p>Create an appointment, select the date and time and press create. You are required to fill all fields on the form.</p>
                 
                 
                 <h:messages class="messages" errorClass="error" warnClass="error" infoClass="info" globalOnly="true"></h:messages>               
@@ -55,44 +55,28 @@
                     </div>
                     
                     <div class="col-md-6 mb-3">
-                        <h:outputText value="Appointment Start Date (DD/MM/YYYY):" /><br />
+                        <h:outputText value="Appointment Start Date and Time (EG: DD/MM/YYYY HH:MM):" /><br />
                         <h:inputText id="startDate" class="form-control" value="#{appointmentController.newAppointment.startDate}">
-                           <f:convertDateTime type="date" pattern="dd/mm/yyy" timeZone="GMT+1"/>
+                           <f:convertDateTime type="both" pattern="dd/MM/yyyy HH:mm" timeZone="GMT+1"/>
                         </h:inputText>
                         <h:message for="startDate" class="error"></h:message>
                     </div>
-                    
+                                       
                     <div class="col-md-6 mb-3">
-                        <h:outputText value="Appointment Start Time (HH:MM):" /><br />
-                        <h:inputText id="startTime" class="form-control" value="#{appointmentController.newAppointment.startTime}">
-                           <f:convertDateTime type="time" pattern="hh:mm"/>
-                        </h:inputText>
-                        <h:message for="startTime" class="error"></h:message>
-                    </div>
-                    
-                    <div class="col-md-6 mb-3">
-                        <h:outputText value="Appointment End Date (DD/MM/YYYY):" /><br />
+                        <h:outputText value="Appointment End Date and Time (EG: DD/MM/YYYY HH:MM):" /><br />
                         <h:inputText id="endDate" class="form-control" value="#{appointmentController.newAppointment.endDate}">
-                           <f:convertDateTime type="date" pattern="dd/mm/yyy" timeZone="GMT+1"/>
+                           <f:convertDateTime type="both" pattern="dd/MM/yyyy HH:mm" timeZone="GMT+1"/>
                         </h:inputText>
                         <h:message for="endDate" class="error"></h:message>
                     </div>
-                    
+                                       
                     <div class="col-md-6 mb-3">
-                        <h:outputText value="Appointment End Time (HH:MM):" /><br />
-                        <h:inputText id="endTime" class="form-control" value="#{appointmentController.newAppointment.endTime}">
-                           <f:convertDateTime type="time" pattern="hh:mm"/>
-                        </h:inputText>
-                        <h:message for="endTime" class="error"></h:message>
-                    </div>
-                    
-                    <div class="col-md-6 mb-3">
-                        <h:outputText value="Select Attendees:" /><br />
-                        <h:selectManyListbox class="form-control" value="#{appointmentController.newAppointment.attendees}">
+                        <h:outputText value="Select Attendees:" /> <small>Optional</small><br />
+                        <h:selectManyListbox id="attendees" class="form-control" value="#{appointmentController.newAppointmentAttendees}">
                             <f:selectItems value="#{userController.getAllUsers(true)}" var="u"
-                                itemLabel="#{u.username}" itemValue="#{u.username}" />
+                                itemLabel="#{u.firstName} #{u.lastName}" itemValue="#{u.username}" />
                         </h:selectManyListbox>
-                        <h:message for="endDate" class="error"></h:message>
+                        <h:message for="attendees" class="error"></h:message>
                     </div>                  
                     
                     <div class="col-md-6 mb-3">

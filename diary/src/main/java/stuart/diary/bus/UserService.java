@@ -69,14 +69,20 @@ public class UserService {
         }
 
         // Phone validation
-        if (!registerUser.getPhoneNumber().matches("((\\+[0-9]{2})\\s*(\\([0-9]{2}\\))\\s*([0-9]{8}))?|((\\([0-9]{3}\\))\\s*([0-9]{8}))?")) {
-            FacesContext.getCurrentInstance().addMessage("registerForm:phoneNumber", new FacesMessage("Phone Number format is invalid"));
+        if (!registerUser.getPhoneNumber().matches("[0-9]{10}|[0-9]{11}|\\([0-9]{3}\\)\\s[0-9]{8}|\\+([0-9]{2})\\s\\(([0-9]{2})\\)\\s([0-9]{8})")) {
+            FacesContext.getCurrentInstance().addMessage("registerForm:phoneNumber", new FacesMessage("Phone Number format is invalid (EG: +44 (00) 12345678)"));
             valid = false;
         }
         
         // Postcode validation
-        if (!registerUser.getPostCode().matches("^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$")) {
+        if (!registerUser.getPostCode().toUpperCase().matches("^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$")) {
             FacesContext.getCurrentInstance().addMessage("registerForm:postcode", new FacesMessage("Postcode format is invalid (EG: SW1A 1AA)"));
+            valid = false;
+        }
+        
+        // Check if username is correct length
+        if(registerUser.getUsername().length() < 6){
+            FacesContext.getCurrentInstance().addMessage("registerForm:username", new FacesMessage("The username must be atleast 6 characters in length."));
             valid = false;
         }
         
@@ -114,23 +120,26 @@ public class UserService {
         }
         
         // Email validation
-        if (!updateUser.getEmailAddress().matches("^[a-zA-Z0-9_.]+@[a-zA-Z.]+?\\.[a-zA-Z]{2,3}$")) {           
-            String response = "Email format is invalid.";
-            FacesContext.getCurrentInstance().addMessage("updateForm:emailAddress", new FacesMessage(FacesMessage.SEVERITY_ERROR, response, response));
+        if (!updateUser.getEmailAddress().matches("^[a-zA-Z0-9_.]+@[a-zA-Z.]+?\\.[a-zA-Z]{2,3}$")) {
+            FacesContext.getCurrentInstance().addMessage("updateForm:emailAddress", new FacesMessage("Email format is invalid."));
             valid = false;
         }
 
         // Phone validation
-        if (!updateUser.getPhoneNumber().matches("((\\+[0-9]{2})\\s*(\\([0-9]{2}\\))\\s*([0-9]{8}))?|((\\([0-9]{3}\\))\\s*([0-9]{8}))?")) {           
-            String response = "Phone Number format is invalid";
-            FacesContext.getCurrentInstance().addMessage("updateForm:phoneNumber", new FacesMessage(FacesMessage.SEVERITY_ERROR, response, response));
+        if (!updateUser.getPhoneNumber().matches("[0-9]{10}|[0-9]{11}|\\([0-9]{3}\\)\\s[0-9]{8}|\\+([0-9]{2})\\s\\(([0-9]{2})\\)\\s([0-9]{8})")) {
+            FacesContext.getCurrentInstance().addMessage("updateForm:phoneNumber", new FacesMessage("Phone Number format is invalid (EG: +44 (00) 12345678)"));
             valid = false;
         }
         
         // Postcode validation
-        if (!updateUser.getPostCode().matches("^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$")) {           
-            String response = "Postcode format is invalid (EG: SW1A 1AA)";
-            FacesContext.getCurrentInstance().addMessage("updateForm:postcode", new FacesMessage(FacesMessage.SEVERITY_ERROR, response, response));
+        if (!updateUser.getPostCode().toUpperCase().matches("^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$")) {
+            FacesContext.getCurrentInstance().addMessage("updateForm:postcode", new FacesMessage("Postcode format is invalid (EG: SW1A 1AA)"));
+            valid = false;
+        }
+        
+        // Check if username is correct length
+        if(updateUser.getUsername().length() < 6){
+            FacesContext.getCurrentInstance().addMessage("updateForm:username", new FacesMessage("The username must be atleast 6 characters in length."));
             valid = false;
         }
         
@@ -146,7 +155,7 @@ public class UserService {
         }
         
         if(!currentUser.getEmailAddress().equals(updateUser.getEmailAddress())){
-             // Check if email exists
+             // Check if email exists when email changed
             if(uf.lookupUserByEmail(updateUser.getEmailAddress()) != null){
                 String response = "A user account already exists with this email address.";
                 FacesContext.getCurrentInstance().addMessage("updateForm:emailAddress", new FacesMessage(FacesMessage.SEVERITY_ERROR, response, response));

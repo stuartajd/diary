@@ -32,9 +32,7 @@ public class Appointment implements Serializable {
     private User owner;
     
     private Date startDate;
-    private Time startTime;
     private Date endDate;
-    private Time endTime;
     
     @ManyToMany
     private List<User> attendees;
@@ -55,14 +53,6 @@ public class Appointment implements Serializable {
         this.startDate = startDate;
     }
 
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
     public Date getEndDate() {
         return endDate;
     }
@@ -70,16 +60,6 @@ public class Appointment implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
-    }
-
-    
     
     public String getTitle() {
         return title;

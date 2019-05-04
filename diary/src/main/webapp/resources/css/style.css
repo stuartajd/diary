@@ -33,6 +33,14 @@ html, body{
     list-style-type:none;
 }
 
+.description {
+    border-radius: 0.25rem;
+    border: 1px solid black;
+    background-color: rgb(212, 212, 212);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
 .header {
     color: white;
     padding-top: 3em;
@@ -83,7 +91,7 @@ html, body{
     text-decoration: none;
 }
 
-a {
+a:not(.btn), a.btn-link {
     color: inherit!important;
     text-decoration: inherit!important;
     transition: all ease-in-out 1s;
@@ -100,10 +108,11 @@ a:hover {
     user-select: none;
 }
 
-.btn-outline-success,.btn-outline-danger,.btn-outline.warning{
+.btn-outline-success,.btn-outline-danger,.btn-outline-warning{
     border-width: 3px!important;
     font-weight: 600!important;
 }
+
 
 .input-group .form-control{
     padding-top: 20px!important;

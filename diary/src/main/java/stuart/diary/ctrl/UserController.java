@@ -93,6 +93,10 @@ public class UserController {
         this.searchResults = searchResults;
     }
     
+    public User getCurrentUser(){
+        return (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+    }
+    
 
     /**
      * Validate the users credentials

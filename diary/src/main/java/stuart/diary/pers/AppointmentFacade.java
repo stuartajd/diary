@@ -5,10 +5,14 @@
  */
 package stuart.diary.pers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import stuart.diary.ents.Appointment;
+import stuart.diary.ents.User;
 
 /**
  *
@@ -27,6 +31,5 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
 
     public AppointmentFacade() {
         super(Appointment.class);
-    }
-    
+    }    
 }
