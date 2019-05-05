@@ -25,7 +25,8 @@ public class UserFacade extends AbstractFacade<User> {
 
     /**
      * Look up a user based off their login username
-     * @param username
+     * @param username The username to lookup
+     * @return User
      */
     public User lookupUserByUsername(String username){
         try {
@@ -39,7 +40,8 @@ public class UserFacade extends AbstractFacade<User> {
         
     /**
      * Look up a user based off their login email
-     * @param username
+     * @param email The email to lookup
+     * @return User
      */
     public User lookupUserByEmail(String email){
         try {

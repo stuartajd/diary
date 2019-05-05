@@ -33,7 +33,7 @@ public class AppointmentService {
     
     /**
      * Returns a list of all appointments, except those in the past
-     * @return List<Appointment>
+     * @return List
      */
     public List<Appointment> searchAppointments(){
         
@@ -51,7 +51,8 @@ public class AppointmentService {
     
     /**
      * Returns a list of all appointments, except those in the past
-     * @return List<Appointment>
+     * @param user User to search for
+     * @return List
      */
     public List<Appointment> getAppointmentsByOwner(User user){
         
@@ -69,7 +70,8 @@ public class AppointmentService {
     
     /**
      * Returns a list of all appointments where the user is attending, except those in the past
-     * @return List<Appointment>
+     * @param user User to search for
+     * @return List
      */
     public List<Appointment> getAppointmentsByAttending(User user){
         
@@ -87,18 +89,19 @@ public class AppointmentService {
     
     /**
      * Returns a list of all appointments for the current user, except those in the past
-     * @return List<Appointment>
+     * @return List
      */
     public List<Appointment> searchAppointmentsForUser(){
         User currentUser = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        return this.searchAppointmentsForUser(currentUser);
+        return this.searchAppointmentsForSelectedUser(currentUser);
     }
     
     /**
      * Returns a list of all appointments for the specified user, except those in the past
-     * @return List<Appointment>
+     * @param user User to search for
+     * @return List
      */
-    public List<Appointment> searchAppointmentsForUser(User user){
+    public List<Appointment> searchAppointmentsForSelectedUser(User user){
         
         List<Appointment> appointments = this.getAppointmentsByAttending(user);
         
@@ -133,8 +136,7 @@ public class AppointmentService {
     
     /**
      * Return an appointment by ID
-     * @param appointmentID Appointment ID
-     * @return appointment
+     * @param appointment Appointment ID
      */
     public void deleteAppointment(Appointment appointment){
         af.remove(appointment);
@@ -142,8 +144,9 @@ public class AppointmentService {
     
     
     /**
-     * Create appointment, validate & check it's not in the past.
-     * @param appointment
+     * Create appointment, validate to check it is not in the past.
+     * @param appointment The appointment to check
+     * @param attendeesList List of names for those who will attend 
      * @return appointment
      */
     public Appointment createAppointment(Appointment appointment, List<String> attendeesList){
@@ -223,12 +226,18 @@ public class AppointmentService {
         return null;
     }
     
+    /**
+     * Check a user for existing appointments that clash with the newly created times
+     * @param appointment Appointment to check for clash
+     * @param user User to check if they have a clash event
+     * @return Boolean
+     */
     public boolean checkUserForExistingAppointments(Appointment appointment, User user){
         
         boolean existingAppointment = false;
         
         // Get all the users existing events
-        for(Appointment app : this.searchAppointmentsForUser(user)){
+        for(Appointment app : this.searchAppointmentsForSelectedUser(user)){
             Date startDate = app.getStartDate();
             Date endDate = app.getEndDate();
 

@@ -18,6 +18,11 @@ public class UserService {
     @EJB
     private UserFacade uf;
 
+    /**
+     * Validate the users login credentials 
+     * @param loginUser User to validate
+     * @return Boolean
+     */
     public boolean validateUser(User loginUser) {
         boolean valid = true;
         
@@ -42,14 +47,28 @@ public class UserService {
         return valid;
     }
 
+    /**
+     * Check the database for a username
+     * @param username User to validate
+     * @return User
+     */
     public User lookupUserByUsername(String username){
        return uf.lookupUserByUsername(username);
     }
     
+    /**
+     * Returns a list of all users on the database
+     * @return List
+     */
     public List<User> searchUsers(){
         return uf.findAll();
     }
 
+    /**
+     * Validate the user registration credentials and add to the database
+     * @param registerUser User to validate and register
+     * @return Boolean
+     */
     public boolean registerUser(User registerUser) {
         boolean valid = true;
 
@@ -105,6 +124,11 @@ public class UserService {
         return valid;
     }
     
+    /**
+     * Update a user credentials, validation.
+     * @param updateUser User to validate and update
+     * @return Boolean
+     */
     public boolean updateUser(User updateUser) {
         boolean valid = true;
 

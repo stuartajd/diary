@@ -83,6 +83,7 @@ public class AuthFilter implements Filter {
 
     /**
      * Return the filter configuration object for this filter.
+     * @return FilterConfig
      */
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);

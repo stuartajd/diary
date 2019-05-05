@@ -35,10 +35,18 @@ public class UserController {
      */
     private User registerUser = new User();
 
+    /**
+     * Get the register user variables
+     * @return User
+     */
     public User getRegisterUser() {
         return registerUser;
     }
 
+    /**
+     * Set the registered user variables
+     * @param registerUser User to be registered
+     */
     public void setRegisterUser(User registerUser) {
         this.registerUser = registerUser;
     }
@@ -48,10 +56,18 @@ public class UserController {
      */
     private User loginUser = new User();
 
+    /**
+     * Get the current logged in user details
+     * @return User
+     */
     public User getLoginUser() {
         return loginUser;
     }
 
+    /**
+     * Set the current login user
+     * @param loginUser User to be authenticated
+     */
     public void setLoginUser(User loginUser) {
         this.loginUser = loginUser;
     }
@@ -59,44 +75,31 @@ public class UserController {
     /**
      * Update User Variables
      */
-    private User updateUser = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+    private User updateUser = this.getCurrentUser();
     
+    /**
+     * Get the current update user account
+     * @return User
+     */
     public User getUpdateUser() {
         return updateUser;
     }
 
+    /**
+     * Set the current update user account
+     * @param updateUser Set user to update
+     */
     public void setUpdateUser(User updateUser) {
         this.updateUser = updateUser;
     }
     
-    
     /**
-     * Search Users Variables
+     * Get the current signed in user
+     * @return User
      */
-    private User searchUser = new User();
-
-    public User getSearchUser() {
-        return searchUser;
-    }
-
-    public void setSearchUser(User searchUser) {
-        this.searchUser = searchUser;
-    }
-    
-    private List<User> searchResults = null;
-
-    public List<User> getSearchResults() {
-        return searchResults;
-    }
-
-    public void setSearchResults(List<User> searchResults) {
-        this.searchResults = searchResults;
-    }
-    
     public User getCurrentUser(){
         return (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
     }
-    
 
     /**
      * Validate the users credentials
@@ -146,16 +149,6 @@ public class UserController {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "login?faces-redirect=true";
     }
-
-    /**
-     * Validate the users credentials and update their account
-     * 
-     * @return String for redirection of JSF
-     */
-    public String doSearchUsers() {    
-        searchResults = us.searchUsers();
-        return "search";
-    }
     
     /**
      * Selects all users from the database.
@@ -164,7 +157,7 @@ public class UserController {
      * @return List of User of all members of the database.
      */
     public List<User> getAllUsers(boolean excludeCurrent) {    
-        searchResults = us.searchUsers();
+        List<User> searchResults = us.searchUsers();
         if(excludeCurrent){
             searchResults.remove((User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user"));
         }

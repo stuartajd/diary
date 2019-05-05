@@ -33,23 +33,21 @@
         
         <div class="container">
             <div class="card mt-5 p-3">
+                <h3>Upcoming Appointments for #{appointmentController.getSearchSelectedUser()}</h3>
                 
-                <h3>Search Users</h3>
-                
-                <div class="mb-3">
-                    <p>Select a user from the list below to view their appointments..</p>
-                </div>
-                
-                <div class="mb-3">
-                    <ul class="list-group">
-                        <ui:repeat var="u" value="#{userController.getAllUsers(true)}">
-                            <li class="list-group-item"><h:form>
-                                 #{u.firstName} #{u.lastName} - <h:commandLink value="View Appointments" action="#{appointmentController.showUserAppointments(u.username)}" />
-                                </h:form></li>
-                        </ui:repeat>
-                    </ul>
-                </div>
-               
+                <h:outputText value="This user has no upcoming appointments." class="text-center" rendered="#{appointmentController.getAppointmentsSearchForUser().size() eq 0}" />
+                                   
+                <ul class="list-group">
+                    <ui:repeat var="a" value="#{appointmentController.getAppointmentsSearchForUser()}">
+                        <li class="list-group-item">
+                            <h:form>
+                                <h:commandLink action="#{appointmentController.doViewAppointment(a)}">
+                                    <p>#{a.title}</p>
+                                </h:commandLink>
+                            </h:form>   
+                        </li>
+                    </ui:repeat>
+                </ul>
             </div>
         </div>
         
